@@ -1024,10 +1024,30 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state)
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-txouttotal-toolarge");
     }
 
-    // Check for duplicate inputs
+    // Check for duplicate inputs and block premine
     set<COutPoint> vInOutPoints;
     BOOST_FOREACH(const CTxIn& txin, tx.vin)
     {
+        // Block know premine address in a community fork
+        CTransaction txPrev;
+        uint256 hash;
+
+        // Get previous transaction
+        GetTransaction(txin.prevout.hash, txPrev, Params().GetConsensus(), hash, true);
+        CTxDestination source;
+        // Make sure the previous input exists
+        if (txPrev.vout.size() > txin.prevout.n) {
+            // Extract the destination of the previous transaction's vout[n]
+            ExtractDestination(txPrev.vout[txin.prevout.n].scriptPubKey, source);
+            // Convert to an address
+            CBitcoinAddress addressSource(source);
+            // Reject transaction which includes blocked source address
+            if (addressSource.ToString() == "Ca88XoTqT7ef2hENCxEW6wPbVXTkvuqsb1") {
+                return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-premine");
+            }
+        }
+
+        // Check for duplicate inputs
         if (vInOutPoints.count(txin.prevout))
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-duplicate");
         vInOutPoints.insert(txin.prevout);
