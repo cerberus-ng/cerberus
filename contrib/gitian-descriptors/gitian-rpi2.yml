@@ -2,7 +2,7 @@
 name: "cerberus-raspberry-0.12"
 enable_cache: true
 suites:
-- "precise"
+- "trusty"
 architectures:
 - "amd64"
 packages:
