@@ -120,7 +120,7 @@ public:
         pchMessageStart[1] = 0xc4;
         pchMessageStart[2] = 0xcb;
         pchMessageStart[3] = 0x4a;
-        vAlertPubKey = ParseHex("0410756d3278217ca5d9f6bc2c32d2ae42ef8c0ccf09207e435404e0ad2a5f71512cdcef8ed857403bd07d604149b96933f4badf8e04bc111b9a4f6e0ce6825409");
+        vAlertPubKey = ParseHex("0414a5ae855274ef87159053776cf81c044aeee2660bcc06acca30b4cdbcc086a959d9e7132aecd08b00447b8382354712ee3239e16ab3f0d2772db7a857317b6f");
         nDefaultPort = 10666;
         nPruneAfterHeight = 100000;
         nMaxTipAge = 6 * 60 * 60; // ~144 blocks behind -> 2 x fork detection time, was 24 * 60 * 60 in bitcoin
@@ -166,7 +166,7 @@ public:
 
         nPoolMaxTransactions = 3;
         nFulfilledRequestExpireTime = 60*60; // fulfilled requests expire in 1 hour
-        strSporkPubKey = "048fad2608f8f4ba09ac006c1089b30e010d04473a60af21190659c5bedbec8339f43f0797f247b52658ac059d54d45d4cbdefdb460fe776bdad81484d5ad1e05a";
+        strSporkPubKey = "04978128456dd761e2fde24d20be726bfe171d8e8461360d62ffb42aa4d8b02b6f857d3bf6fe6dfe75338940158db4d200d7efbad4024f7a06acca149ee0e5b499";
         strMasternodePaymentsPubKey = "048fad2608f8f4ba09ac006c1089b30e010d04473a60af21190659c5bedbec8339f43f0797f247b52658ac059d54d45d4cbdefdb460fe776bdad81484d5ad1e05a";
 
         checkpointData = (CCheckpointData) {
@@ -229,7 +229,7 @@ public:
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb5;
         pchMessageStart[3] = 0x6c;
-        vAlertPubKey = ParseHex("045bd7d4a1daaea5c908c88f12c58bb7a2a9987b83730ae18e8fa72350b157e38db84390dc044ade80ed75a57c33311a0346476cfa6b5606e6d52266bb67d13e35");
+        vAlertPubKey = ParseHex("04c73f65f6c09bd3c2701549fba25acb7c607779db60809601c0f6c9c9a9b20c7351833f0340886faadf7710e00a8d624f11155ff4ba07b93a5b72fbf07ffc4e8a");
         nDefaultPort = 11666;
         nMaxTipAge = 0x7fffffff; // allow mining on top of old blocks for testnet
         nPruneAfterHeight = 1000;
@@ -268,7 +268,7 @@ public:
 
         nPoolMaxTransactions = 3;
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
-        strSporkPubKey = "04f9325caafd391ec5866063467217c302e4cd948f331d808bf60a84512a4e98f5cf56f8daef91010f210dccae1dd6ec92b72e9546abc6e9edeef969f91929c3a4";
+        strSporkPubKey = "04c5a0b61c2dbf34a367d99d2a15287722cd22feb5887387e083f2bb819a573366d4ebe4c6f86063dad11974220026312a20c0b6b01fa583c75ac5518143a8e8ad";
         strMasternodePaymentsPubKey = "04f9325caafd391ec5866063467217c302e4cd948f331d808bf60a84512a4e98f5cf56f8daef91010f210dccae1dd6ec92b72e9546abc6e9edeef969f91929c3a4";
 
         checkpointData = (CCheckpointData) {
