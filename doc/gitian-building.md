@@ -304,7 +304,7 @@ Clone the git repositories for Cerberus Core and Gitian.
 
 ```bash
 git clone https://github.com/devrandom/gitian-builder.git
-git clone https://github.com/cerberuscore/cerberus
+git clone https://github.com/cerberus-ng/cerberus
 ```
 
 Setting up the Gitian image

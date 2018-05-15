@@ -20,7 +20,7 @@ Installation
 
 Please see INSTALL for the building instructions.
 
-Precompiled binaries are available in the releases section: https://github.com/cerberuscore/cerberus/releases
+Precompiled binaries are available in the releases section: https://github.com/cerberus-ng/cerberus/releases
 
 
 

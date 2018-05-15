@@ -17,7 +17,7 @@ packages:
 - "binutils-gold"
 reference_datetime: "2017-01-01 00:00:00"
 remotes:
-- "url": "https://github.com/cerberuscore/cerberus.git"
+- "url": "https://github.com/cerberus-ng/cerberus.git"
   "dir": "cerberus"
 files:
 - "raspberrypi-tools.tar.gz"
