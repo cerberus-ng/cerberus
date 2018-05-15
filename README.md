@@ -1,8 +1,21 @@
 Cerberus 0.12.2
 ===============================
 
+Cerberus Core version 0.12.2 is now available from:
 
-http://cerberuscoin.com
+  https://github.com/cerberus-ng/cerberus/releases
+
+Release 0.12.2 is a first published community-based build which forks the original coin.
+It includes a series of patches to make this coin great again, including rebranding,
+new boot nodes, new repository, fix for sync issues and many others.
+
+Original site: http://cerberuscoin.com
+
+Cerberus-NG (new generation) sites:
+ - Actual block explorer is: http://cbs.exp.osnwt.site
+ - Source repository is: https://github.com/cerberus-ng/cerberus
+ - New Discord channel is: https://discord.gg/SgVt2Jd
+ - New BitcoinTalk thread is: coming soon...
 
 
 What is Cerberus?

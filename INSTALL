@@ -1,5 +1,9 @@
 Building Cerberus Core
 
+Clone the respository from GitHub:
+
+    git clone https://github.com/cerberus-ng/cerberus
+
 Use the autogen script to prepare the build environment.
 
     ./autogen.sh
@@ -7,7 +11,7 @@ Use the autogen script to prepare the build environment.
     make
 
 Precompiled binaries are available at github, see
-https://github.com/cerberus-ng
+https://github.com/cerberus-ng/cerberus/releases
 
 See doc/build-*.md for instructions on building cerberusd,
 the intended-for-services, no-graphical-interface, reference
