@@ -1,5 +1,5 @@
 ---
-name: "cerberus-raspberry-0.12"
+name: "cerberus-raspberry-0.12.2"
 enable_cache: true
 suites:
 - "trusty"

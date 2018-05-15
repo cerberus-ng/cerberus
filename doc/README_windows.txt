@@ -1,4 +1,4 @@
-Cerberus Core 0.12.1
+Cerberus Core 0.12.2
 =====================
 
 Intro

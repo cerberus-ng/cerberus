@@ -1,4 +1,4 @@
-Cerberus Core 0.12.1
+Cerberus Core 0.12.2
 =====================
 
 This is the official reference wallet for Cerberus digital currency and comprises the backbone of the Cerberus peer-to-peer network. You can [download Cerberus Core](https://www.cerberus.org/downloads/) or [build it yourself](#building) using the guides below.
