@@ -133,14 +133,11 @@ public:
 		consensus.hashGenesisBlock = genesis.GetHash();
 		assert(consensus.hashGenesisBlock == uint256S("0x00000980ea8d83f03493b7a583ce47d91de5c2469e0dc9361e9e125a64142df1"));
 		assert(genesis.hashMerkleRoot == uint256S("0xefcdbc4c7d74c3abf0b0d725828a0ba34b931fabb68313c659717eb2cf307080"));
-		        
-		vSeeds.push_back(CDNSSeedData("cerberuscoin.com", "seed1.cerberuscoin.com"));
-        vSeeds.push_back(CDNSSeedData("cerberuscoin.com", "seed2.cerberuscoin.com"));
-        vSeeds.push_back(CDNSSeedData("cerberuscoin.com", "seed3.cerberuscoin.com"));
 
-	   
-	   
-	   
+        vSeeds.push_back(CDNSSeedData("cerberus-ng", "seed1.cbs.osnwt.site"));
+        vSeeds.push_back(CDNSSeedData("cerberus-ng", "seed2.cbs.osnwt.site"));
+        vSeeds.push_back(CDNSSeedData("cerberus-ng", "seed3.cbs.osnwt.site"));
+
         // Cerberus addresses start with 'C'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,28);
         // Cerberus script addresses start with '7'
