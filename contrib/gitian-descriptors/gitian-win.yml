@@ -1,5 +1,5 @@
 ---
-name: "cerberus-win-0.12.2"
+name: "cerberus-win-0.12.2.1"
 enable_cache: true
 suites:
 - "trusty"
@@ -21,7 +21,7 @@ packages:
 - "zip"
 - "ca-certificates"
 - "python"
-reference_datetime: "2017-01-01 00:00:00"
+reference_datetime: "2018-05-26 00:00:00"
 remotes:
 - "url": "https://github.com/cerberus-ng/cerberus.git"
   "dir": "cerberus"
