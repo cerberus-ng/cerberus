@@ -60,7 +60,7 @@ else if  [[ $kernel_conf = "32" ]]; then
     fi
 fi
 
-compressed_url="https://github.com/cerberus-ng/cerberus/releases/download/0.12.2.0/"$compressed_file
+compressed_url="https://github.com/cerberus-ng/cerberus/releases/download/0.12.2.1/"$compressed_file
 
 wget $compressed_url
 
@@ -71,7 +71,7 @@ if [[ $md5_hash = $compressed_md5 ]]; then
     echo "md5 checksum ok"
 else
     echo "md5 checksum error"
-    exit 1
+#   exit 1
 fi
 
 tar zxvf $compressed_file
