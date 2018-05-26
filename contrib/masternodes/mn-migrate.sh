@@ -53,16 +53,16 @@ fi
 kernel_conf=`getconf LONG_BIT`
 if [[ $kernel_conf = "64" ]]; then
     compressed_file="cerberuscore-0.12.2-linux64.tar.gz"
-    compressed_md5="8d48e463e9bdf03355bd7d30f649d1a0"
+    compressed_md5="27294498699465578db2dc9e0c9cf7ba"
 else if  [[ $kernel_conf = "32" ]]; then
     compressed_file="cerberuscore-0.12.2-linux32.tar.gz"
-    compressed_md5="60100ca8901f97e305a204d7466568d5"
+    compressed_md5="8099fcd902e8e44b6c3792110e8b4fca"
     fi
 fi
 
 compressed_url="https://github.com/cerberus-ng/cerberus/releases/download/0.12.2.1/"$compressed_file
 
-wget $compressed_url
+wget -N $compressed_url
 
 md5_hash=`openssl md5 -r $compressed_file | cut -d' ' -f1`
 echo "md5_hash = "$md5_hash >> $mn_log
@@ -86,10 +86,12 @@ cp cerberus-cli $cerberus_cli_dir
 cp cerberusd $cerberusd_dir
 
 cerberusd -daemon
+echo "Starting node..."
+sleep 10
 
 cbs_version=`cerberus-cli getinfo | grep \"version\" | cut -c14-19`
 
-if [[ $cbs_version = "120200" ]]; then
+if [[ $cbs_version = "120201" ]]; then
     echo "MN upgraded successfully"
 else
     echo "MN upgrade error, please see log file " $mn_log
