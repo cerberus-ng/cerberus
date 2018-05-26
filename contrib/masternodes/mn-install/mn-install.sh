@@ -7,7 +7,7 @@ COIN_DAEMON='cerberusd'
 COIN_CLI='cerberus-cli'
 COIN_PATH='/usr/local/bin/'
 KERN_ARCH=$(getconf LONG_BIT)
-COIN_TGZ="https://github.com/cerberus-ng/cerberus/releases/download/0.12.2.0/cerberuscore-0.12.2-linux${KERN_ARCH}.tar.gz"
+COIN_TGZ="https://github.com/cerberus-ng/cerberus/releases/download/0.12.2.1/cerberuscore-0.12.2-linux${KERN_ARCH}.tar.gz"
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='CerberusNG'
 COIN_PORT=10666
@@ -123,21 +123,6 @@ maxconnections=256
 masternode=1
 externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
-addnode=212.237.4.77:10666
-addnode=37.187.24.211:10666
-addnode=144.202.89.240:10666
-addnode=194.182.74.146:10666
-addnode=54.38.78.54:10666
-addnode=195.201.11.54:10666
-addnode=188.213.165.219:10666
-addnode=54.38.31.41:10666
-addnode=46.4.120.126:10666
-addnode=207.246.79.13:10666
-addnode=188.68.48.153:10666
-addnode=51.15.93.165:10666
-addnode=188.116.56.199:10666
-addnode=199.247.18.67:10666
-addnode=173.249.44.68:10666
 EOF
 }
 
@@ -267,4 +252,3 @@ checks
 prepare_system
 download_node
 setup_node
-
