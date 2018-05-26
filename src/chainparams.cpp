@@ -82,7 +82,7 @@ public:
         consensus.nMasternodePaymentsIncreasePeriod = 20160; // every 4 weeks
         consensus.nInstantSendKeepLock = 24;
         consensus.nBudgetPaymentsStartBlock = 525000;
-        consensus.nBudgetPaymentsCycleBlocks = 21600; 
+        consensus.nBudgetPaymentsCycleBlocks = 21600;
         consensus.nBudgetPaymentsWindowBlocks = 100;
         consensus.nBudgetProposalEstablishingTime = 60*60*24;
         consensus.nSuperblockStartBlock = 900000000;  // off for now
@@ -127,16 +127,16 @@ public:
 
         genesis = CreateGenesisBlock(1515819600, 1534623, 0x1e0ffff0, 1, 12 * COIN);
 
-		//vFixedSeeds.clear();
+        //vFixedSeeds.clear();
         //vSeeds.clear();
-		
-		consensus.hashGenesisBlock = genesis.GetHash();
-		assert(consensus.hashGenesisBlock == uint256S("0x00000980ea8d83f03493b7a583ce47d91de5c2469e0dc9361e9e125a64142df1"));
-		assert(genesis.hashMerkleRoot == uint256S("0xefcdbc4c7d74c3abf0b0d725828a0ba34b931fabb68313c659717eb2cf307080"));
 
-        vSeeds.push_back(CDNSSeedData("cerberus-ng", "seed1.cbs.osnwt.site"));
-        vSeeds.push_back(CDNSSeedData("cerberus-ng", "seed2.cbs.osnwt.site"));
-        vSeeds.push_back(CDNSSeedData("cerberus-ng", "seed3.cbs.osnwt.site"));
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x00000980ea8d83f03493b7a583ce47d91de5c2469e0dc9361e9e125a64142df1"));
+        assert(genesis.hashMerkleRoot == uint256S("0xefcdbc4c7d74c3abf0b0d725828a0ba34b931fabb68313c659717eb2cf307080"));
+
+        vSeeds.push_back(CDNSSeedData("cerberus-ng.com", "seed1.cerberus-ng.com"));
+        vSeeds.push_back(CDNSSeedData("cerberus-ng.com", "seed2.cerberus-ng.com"));
+        vSeeds.push_back(CDNSSeedData("cerberus-ng.com", "seed3.cerberus-ng.com"));
 
         // Cerberus addresses start with 'C'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,28);
@@ -151,8 +151,6 @@ public:
         // Cerberus BIP44 coin type is '5'
         base58Prefixes[EXT_COIN_TYPE]  = boost::assign::list_of(0x80)(0x00)(0x00)(0x05).convert_to_container<std::vector<unsigned char> >();
 
-		
-		
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
         fMiningRequiresPeers = true;
@@ -253,7 +251,7 @@ public:
 
         //vFixedSeeds.clear();
         //vSeeds.clear();
-		vSeeds.push_back(CDNSSeedData("cerberuscoin.com",  "testnet.cerberuscoin.com"));
+        vSeeds.push_back(CDNSSeedData("cerberus-ng.com",  "testnet-seed1.cerberus-ng.com"));
 
         // Testnet Cerberus addresses start with 'n'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,112);
