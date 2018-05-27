@@ -1,13 +1,17 @@
 #!/bin/bash
+
+
 echo "This is an attempt to migrate your existing CBS masternode to the new NG " 
 echo "version. if you have any issues please refer to the project's FAQ "
-echo "https://github.com/cerberus-ng/cerberus/wiki/FAQ "
-echo "This script works only on Linux systems."
+echo "https://github.com/cerberus-ng/cerberus/wiki/FAQ "                 
+echo "This script works only on Linux systems."      
 echo "and don't forget to join our server on Discord https://discord.gg/mzzRhqW "
 echo "Copyright (C) 2018 The Cerberus New Generation Project"
 echo ""
+
+
 timestamp() {
-    date +"%Y-%m-%d_%H-%M-%S"
+  date +"%Y-%m-%d_%H-%M-%S"
 }
 
 result=0
@@ -19,6 +23,8 @@ cerberusd_loc=`type -p "$cerberusd_command_name"`
 cerberusd_dir=`dirname "$cerberusd_loc"`
 cerberus_cli_dir=`dirname "$cerberus_cli_loc"`
 mn_log="mn-migrate."`timestamp`".log"
+
+
 echo "This is the beginning of MN migration log file " > $mn_log
 echo "cerberus_cli_command_name = "$cerberus_cli_command_name >> $mn_log
 echo "cerberusd_command_name = "$cerberusd_command_name >> $mn_log
@@ -29,28 +35,29 @@ echo "cerberus_cli_dir = " $cerberus_cli_dir >> $mn_log
 
 echo "Checking for superuser privileges... "
 if [ "$EUID" -ne 0 ]
-    then echo "Please run as root"
-    exit 1
+  then echo "Please run as root"
+  exit
 fi
 
 echo "Checking for Cerberus NG client (cerberus-cli)... "
 if [[ -z $cerberus_cli_loc ]]; then
-    echo "Cerberus NG client (cerberus-cli) not found, aborting"
-    result=1
+	echo "Cerberus NG client (cerberus-cli) not found, aborting"
+	result=1
 fi
 
 echo "Checking for Cerberus NG daemon (cerberusd)... "
 if [[ -z $cerberusd_loc ]]; then
-    echo "Cerberus NG daemon (cerberusd) not found, aborting"
-    result=1
+	echo "Cerberus NG daemon (cerberusd) not found, aborting"
+	result=1
 fi
 
 if [[ $result -ne 0 ]]; then
     echo "Failed to upgrade MN"
-    exit 1
+	exit 1
 fi
 
 kernel_conf=`getconf LONG_BIT`
+
 if [[ $kernel_conf = "64" ]]; then
     compressed_file="cerberuscore-0.12.2-linux64.tar.gz"
     compressed_md5="27294498699465578db2dc9e0c9cf7ba"
@@ -79,6 +86,9 @@ cd cerberuscore-0.12.2/bin
 
 cerberus-cli stop
 
+echo "Please wait 10 secs..."
+sleep 10
+
 mv $cerberusd_loc $cerberusd_loc.old
 mv $cerberus_cli_loc $cerberus_cli_loc.old
 
@@ -86,8 +96,9 @@ cp cerberus-cli $cerberus_cli_dir
 cp cerberusd $cerberusd_dir
 
 cerberusd -daemon
-echo "Starting node..."
-sleep 10
+
+echo "Please wait 30 secs..."
+sleep 30
 
 cbs_version=`cerberus-cli getinfo | grep \"version\" | cut -c14-19`
 
