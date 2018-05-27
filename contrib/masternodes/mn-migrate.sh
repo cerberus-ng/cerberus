@@ -9,6 +9,12 @@ echo "and don't forget to join our server on Discord https://discord.gg/mzzRhqW 
 echo "Copyright (C) 2018 The Cerberus New Generation Project"
 echo ""
 
+# Attempting to avoid copy/pasting when version changes
+VERSION_NUMBER="0.12.2"
+RELEASE_NUMBER="1"
+MD5_HASH32="8099fcd902e8e44b6c3792110e8b4fca"
+MD5_HASH64="27294498699465578db2dc9e0c9cf7ba"
+
 
 timestamp() {
   date +"%Y-%m-%d_%H-%M-%S"
@@ -36,7 +42,7 @@ echo "cerberus_cli_dir = " $cerberus_cli_dir >> $mn_log
 echo "Checking for superuser privileges... "
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
-  exit
+#  exit
 fi
 
 echo "Checking for Cerberus NG client (cerberus-cli)... "
@@ -58,16 +64,26 @@ fi
 
 kernel_conf=`getconf LONG_BIT`
 
+echo "kernel_conf = " $kernel_conf >> $mn_log
+
 if [[ $kernel_conf = "64" ]]; then
-    compressed_file="cerberuscore-0.12.2-linux64.tar.gz"
-    compressed_md5="27294498699465578db2dc9e0c9cf7ba"
+    compressed_file="cerberuscore-"$VERSION_NUMBER"-linux64.tar.gz"
+    compressed_md5=$MD5_HASH64
 else if  [[ $kernel_conf = "32" ]]; then
-    compressed_file="cerberuscore-0.12.2-linux32.tar.gz"
-    compressed_md5="8099fcd902e8e44b6c3792110e8b4fca"
+    compressed_file="cerberuscore-"$VERSION_NUMBER"-linux32.tar.gz"
+    compressed_md5=$MD5_HASH32
     fi
 fi
 
-compressed_url="https://github.com/cerberus-ng/cerberus/releases/download/0.12.2.1/"$compressed_file
+echo "compressed_file = " $compressed_file >> $mn_log
+
+if [ -e $compressed_file ]; then
+	mv $compressed_file $compressed_file.old.`timestamp`
+fi
+
+compressed_url="https://github.com/cerberus-ng/cerberus/releases/download/"$VERSION_NUMBER"."$RELEASE_NUMBER"/"$compressed_file
+
+echo "compressed_url = " $compressed_url >> $mn_log
 
 wget -N $compressed_url
 
@@ -82,7 +98,7 @@ else
 fi
 
 tar zxvf $compressed_file
-cd cerberuscore-0.12.2/bin
+cd cerberuscore-$VERSION_NUMBER/bin
 
 cerberus-cli stop
 
