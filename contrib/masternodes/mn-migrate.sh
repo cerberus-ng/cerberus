@@ -12,6 +12,7 @@ echo ""
 # Attempting to avoid copy/pasting when version changes
 VERSION_NUMBER="0.12.2"
 RELEASE_NUMBER="1"
+VERSION_STRING="120201"
 MD5_HASH32="8099fcd902e8e44b6c3792110e8b4fca"
 MD5_HASH64="27294498699465578db2dc9e0c9cf7ba"
 
@@ -118,7 +119,7 @@ sleep 30
 
 cbs_version=`cerberus-cli getinfo | grep \"version\" | cut -c14-19`
 
-if [[ $cbs_version = "120201" ]]; then
+if [[ $cbs_version = $VERSION_STRING ]]; then
     echo "MN upgraded successfully"
 else
     echo "MN upgrade error, please see log file " $mn_log
