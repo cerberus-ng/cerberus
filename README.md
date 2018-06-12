@@ -1,7 +1,7 @@
-Cerberus 0.12.2
+Cerberus 1.0.0
 ===============================
 
-Cerberus Core version 0.12.2 is now available from:
+Cerberus Core version 1.0.0 is now available from:
 
   https://github.com/cerberus-ng/cerberus/releases
 
