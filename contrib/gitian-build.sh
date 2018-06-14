@@ -14,24 +14,24 @@ windows=true
 osx=true
 
 # Other Basic variables
-SIGNER=
-VERSION=
+SIGNER=mrmetech
+VERSION=master
 commit=false
-url=https://github.com/Gravium/gravium
-proc=2
-mem=2000
+url=https://github.com/cerberus-ng/cerberus.git
+proc=30
+mem=20000
 lxc=true
 osslTarUrl=http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/osslsigncode-1.7.1.tar.gz
 osslPatchUrl=https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
 scriptName=$(basename -- "$0")
 signProg="gpg --detach-sign"
-commitFiles=true
+commitFiles=false
 
 # Help Message
 read -r -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the gravium, gitian-builder, gitian.sigs, and gravium-detached-sigs.
+Run this script from the directory containing the cerberus, gitian-builder, gitian.sigs, and cerberus-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/graviumofficial/gravium
+-u|--url	Specify the URL of the repository. Default is https://github.com/cerberusofficial/cerberus
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -252,7 +252,7 @@ then
 fi
 
 # Set up build
-pushd ./gravium || exit
+pushd ./cerberus || exit
 git fetch
 git checkout "${COMMIT}"
 popd || exit
@@ -261,7 +261,7 @@ popd || exit
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p "./gravium-binaries/${VERSION}"
+	mkdir -p "./cerberus-binaries/${VERSION}"
 
 	# Build Dependencies
 	echo ""
@@ -271,7 +271,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../gravium/depends download SOURCES_PATH="$(pwd)/cache/common"
+	make -C ../cerberus/depends download SOURCES_PATH="$(pwd)/cache/common"
 
 	# Linux
 	if [[ $linux = true ]]
@@ -279,9 +279,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit gravium=${COMMIT} --url gravium=${url} ../gravium/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../gravium/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/gravium-*.tar.gz build/out/src/gravium-*.tar.gz ../gravium-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit cerberus=${COMMIT} --url cerberus=${url} ../cerberus/contrib/gitian-descriptors/gitian-linux.yml
+	    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/cerberus-*.tar.gz build/out/src/cerberus-*.tar.gz ../cerberus-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -289,10 +289,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit gravium=${COMMIT} --url gravium=${url} ../gravium/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../gravium/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/gravium-*-win-unsigned.tar.gz inputs/gravium-win-unsigned.tar.gz
-	    mv build/out/gravium-*.zip build/out/gravium-*.exe ../gravium-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit cerberus=${COMMIT} --url cerberus=${url} ../cerberus/contrib/gitian-descriptors/gitian-win.yml
+	    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/cerberus-*-win-unsigned.tar.gz inputs/cerberus-win-unsigned.tar.gz
+	    mv build/out/cerberus-*.zip build/out/cerberus-*.exe ../cerberus-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -300,10 +300,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit gravium=${COMMIT} --url gravium=${url} ../gravium/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../gravium/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/gravium-*-osx-unsigned.tar.gz inputs/gravium-osx-unsigned.tar.gz
-	    mv build/out/gravium-*.tar.gz build/out/gravium-*.dmg ../gravium-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit cerberus=${COMMIT} --url cerberus=${url} ../cerberus/contrib/gitian-descriptors/gitian-osx.yml
+	    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/cerberus-*-osx-unsigned.tar.gz inputs/cerberus-osx-unsigned.tar.gz
+	    mv build/out/cerberus-*.tar.gz build/out/cerberus-*.dmg ../cerberus-binaries/${VERSION}
 	fi
 	# AArch64
 	if [[ $aarch64 = true ]]
@@ -311,9 +311,9 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} AArch64"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit gravium=${COMMIT} --url gravium=${url} ../gravium/contrib/gitian-descriptors/gitian-aarch64.yml
-	    ./bin/gsign --signer $SIGNER --release ${VERSION}-aarch64 --destination ../gitian.sigs/ ../gravium/contrib/gitian-descriptors/gitian-aarch64.yml
-	    mv build/out/gravium-*.tar.gz build/out/src/gravium-*.tar.gz ../gravium-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit cerberus=${COMMIT} --url cerberus=${url} ../cerberus/contrib/gitian-descriptors/gitian-aarch64.yml
+	    ./bin/gsign --signer $SIGNER --release ${VERSION}-aarch64 --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-aarch64.yml
+	    mv build/out/cerberus-*.tar.gz build/out/src/cerberus-*.tar.gz ../cerberus-binaries/${VERSION}
 	fi
 	popd || exit
 
@@ -341,32 +341,32 @@ then
 	echo ""
 	echo "Verifying v${VERSION} Linux"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../gravium/contrib/gitian-descriptors/gitian-linux.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../cerberus/contrib/gitian-descriptors/gitian-linux.yml
 	# Windows
 	echo ""
 	echo "Verifying v${VERSION} Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../gravium/contrib/gitian-descriptors/gitian-win.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../cerberus/contrib/gitian-descriptors/gitian-win.yml
 	# Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../gravium/contrib/gitian-descriptors/gitian-osx.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../cerberus/contrib/gitian-descriptors/gitian-osx.yml
 	# AArch64
 	echo ""
 	echo "Verifying v${VERSION} AArch64"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-aarch64 ../gravium/contrib/gitian-descriptors/gitian-aarch64.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-aarch64 ../cerberus/contrib/gitian-descriptors/gitian-aarch64.yml
 	# Signed Windows
 	echo ""
 	echo "Verifying v${VERSION} Signed Windows"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../gravium/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../cerberus/contrib/gitian-descriptors/gitian-osx-signer.yml
 	# Signed Mac OSX
 	echo ""
 	echo "Verifying v${VERSION} Signed Mac OSX"
 	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../gravium/contrib/gitian-descriptors/gitian-osx-signer.yml
+	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../cerberus/contrib/gitian-descriptors/gitian-osx-signer.yml
 	popd || exit
 fi
 
@@ -381,10 +381,10 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../gravium/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../gravium/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/gravium-*win64-setup.exe ../gravium-binaries/${VERSION}
-	    mv build/out/gravium-*win32-setup.exe ../gravium-binaries/${VERSION}
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../cerberus/contrib/gitian-descriptors/gitian-win-signer.yml
+	    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-win-signer.yml
+	    mv build/out/cerberus-*win64-setup.exe ../cerberus-binaries/${VERSION}
+	    mv build/out/cerberus-*win32-setup.exe ../cerberus-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -392,9 +392,9 @@ then
 	    echo ""
 	    echo "Signing ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../gravium/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../gravium/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/gravium-osx-signed.dmg ../gravium-binaries/${VERSION}/gravium-${VERSION}-osx.dmg
+	    ./bin/gbuild -i --commit signature=${COMMIT} ../cerberus/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-osx-signer.yml
+	    mv build/out/cerberus-osx-signed.dmg ../cerberus-binaries/${VERSION}/cerberus-${VERSION}-osx.dmg
 	fi
 	popd || exit
 
