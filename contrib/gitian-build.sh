@@ -281,7 +281,7 @@ then
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit cerberus=${COMMIT} --url cerberus=${url} ../cerberus/contrib/gitian-descriptors/gitian-linux.yml
 	    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/cerberus-*.tar.gz build/out/src/cerberus-*.tar.gz ../cerberus-binaries/${VERSION}
+	    mv build/out/cerberuscore-*.tar.gz build/out/src/cerberuscore-*.tar.gz ../cerberus-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -291,8 +291,8 @@ then
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit cerberus=${COMMIT} --url cerberus=${url} ../cerberus/contrib/gitian-descriptors/gitian-win.yml
 	    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/cerberus-*-win-unsigned.tar.gz inputs/cerberus-win-unsigned.tar.gz
-	    mv build/out/cerberus-*.zip build/out/cerberus-*.exe ../cerberus-binaries/${VERSION}
+	    mv build/out/cerberuscore-*-win-unsigned.tar.gz inputs/cerberus-win-unsigned.tar.gz
+	    mv build/out/cerberuscore-*.zip build/out/cerberus-*.exe ../cerberus-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -302,8 +302,8 @@ then
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit cerberus=${COMMIT} --url cerberus=${url} ../cerberus/contrib/gitian-descriptors/gitian-osx.yml
 	    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/cerberus-*-osx-unsigned.tar.gz inputs/cerberus-osx-unsigned.tar.gz
-	    mv build/out/cerberus-*.tar.gz build/out/cerberus-*.dmg ../cerberus-binaries/${VERSION}
+	    mv build/out/cerberuscore-*-osx-unsigned.tar.gz inputs/cerberus-osx-unsigned.tar.gz
+	    mv build/out/cerberuscore-*.tar.gz build/out/cerberus-*.dmg ../cerberus-binaries/${VERSION}
 	fi
 	# AArch64
 	if [[ $aarch64 = true ]]
@@ -313,7 +313,7 @@ then
 	    echo ""
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit cerberus=${COMMIT} --url cerberus=${url} ../cerberus/contrib/gitian-descriptors/gitian-aarch64.yml
 	    ./bin/gsign --signer $SIGNER --release ${VERSION}-aarch64 --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-aarch64.yml
-	    mv build/out/cerberus-*.tar.gz build/out/src/cerberus-*.tar.gz ../cerberus-binaries/${VERSION}
+	    mv build/out/cerberuscore-*.tar.gz build/out/src/cerberus-*.tar.gz ../cerberus-binaries/${VERSION}
 	fi
 	popd || exit
 
@@ -383,8 +383,8 @@ then
 	    echo ""
 	    ./bin/gbuild -i --commit signature=${COMMIT} ../cerberus/contrib/gitian-descriptors/gitian-win-signer.yml
 	    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/cerberus-*win64-setup.exe ../cerberus-binaries/${VERSION}
-	    mv build/out/cerberus-*win32-setup.exe ../cerberus-binaries/${VERSION}
+	    mv build/out/cerberuscore-*win64-setup.exe ../cerberus-binaries/${VERSION}
+	    mv build/out/cerberuscore-*win32-setup.exe ../cerberus-binaries/${VERSION}
 	fi
 	# Sign Mac OSX
 	if [[ $osx = true ]]
@@ -394,7 +394,7 @@ then
 	    echo ""
 	    ./bin/gbuild -i --commit signature=${COMMIT} ../cerberus/contrib/gitian-descriptors/gitian-osx-signer.yml
 	    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/cerberus-osx-signed.dmg ../cerberus-binaries/${VERSION}/cerberus-${VERSION}-osx.dmg
+	    mv build/out/cerberuscore-osx-signed.dmg ../cerberus-binaries/${VERSION}/cerberus-${VERSION}-osx.dmg
 	fi
 	popd || exit
 
