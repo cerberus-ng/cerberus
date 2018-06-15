@@ -292,7 +292,7 @@ then
 	    ./bin/gbuild -j ${proc} -m ${mem} --commit cerberus=${COMMIT} --url cerberus=${url} ../cerberus/contrib/gitian-descriptors/gitian-win.yml
 	    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../cerberus/contrib/gitian-descriptors/gitian-win.yml
 	    mv build/out/cerberuscore-*-win-unsigned.tar.gz inputs/cerberus-win-unsigned.tar.gz
-	    mv build/out/cerberuscore-*.zip build/out/cerberus-*.exe ../cerberus-binaries/${VERSION}
+	    mv build/out/cerberuscore-*.zip build/out/cerberuscore-*.exe ../cerberus-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
