@@ -81,7 +81,7 @@ public:
         consensus.nMasternodePaymentsIncreaseBlock = 20160; // after 4 weeks
         consensus.nMasternodePaymentsIncreasePeriod = 20160; // every 4 weeks
         consensus.nInstantSendKeepLock = 24;
-        consensus.nBudgetPaymentsStartBlock = 525000;
+        consensus.nBudgetPaymentsStartBlock = 106759;
         consensus.nBudgetPaymentsCycleBlocks = 21600;
         consensus.nBudgetPaymentsWindowBlocks = 100;
         consensus.nBudgetProposalEstablishingTime = 60*60*24;
